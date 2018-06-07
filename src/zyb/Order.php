@@ -70,7 +70,7 @@ class Order
             "transactionName" => $transactionName,
             "header" => [
                 "application" => "SendCode",
-                "requestTime" => date("Y-m-d H:i:s")
+                "requestTime" => date("Y-m-d")
             ],
             "identityInfo" => [
                 "corpCode" => $this->config['corpCode'],
@@ -78,8 +78,12 @@ class Order
             ],
             "orderRequest" => $orderRequest
         ];
+
+        //数组去掉null
+        $arr = $this->array_remove_empty($reqParam);  // filter the array
+
         //转换为xml格式字符串
-        $result = $this->arrayToXml($reqParam);
+        $result = $this->arrayToXml($arr);
         //添加根标签
         $xml = "<PWBRequest>" . $result . "</PWBRequest>";
         //签名
@@ -127,5 +131,23 @@ class Order
         $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
         $val = json_decode(json_encode($xmlstring), true);
         return $val;
+    }
+
+    /**
+     * 递归去掉数组中null的值
+     * @param $haystack
+     * @return mixed
+     */
+    private function array_remove_empty($haystack)
+    {
+        foreach ($haystack as $key => $value) {
+            if (is_array($value)) {
+                $haystack[$key] = $this->array_remove_empty($haystack[$key]);
+            }
+            if (empty($value)) {
+                unset($haystack[$key]);
+            }
+        }
+        return $haystack;
     }
 }

@@ -51,4 +51,19 @@ class TicketOrder
      */
     public $remark;
 
+    public $credentials;
+
+    /**
+     * @param array $credentials
+     */
+    public function setCredentials($credentials)
+    {
+        $arr['credential']['id'] = $credentials['id_number'];
+        $arr['credential']['name'] = $credentials['name'];
+        $this->credentials = $arr;
+    }
+
+
+
+
 }

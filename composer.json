@@ -1,0 +1,25 @@
+{
+  "name": "wulilele/zhiyoubao",
+  "description": "智游宝平台对接",
+  "keywords": [
+    "wulilele","智游宝","zhiyoubao"
+  ],
+  "license": "GPL-3.0+",
+  "homepage": "http://www.xmainc.com/",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Wulilele",
+      "email": "1181200882@qq.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wulilele\\Zhiyoubao\\": "src"
+    }
+  }
+}

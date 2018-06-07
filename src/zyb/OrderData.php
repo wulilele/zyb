@@ -6,7 +6,7 @@
  * Time: 1:24 PM
  */
 
-namespace zyb;
+namespace Wulilele\Zhiyoubao\zyb;
 
 
 class OrderData

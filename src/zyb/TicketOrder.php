@@ -6,7 +6,7 @@
  * Time: 1:35 PM
  */
 
-namespace zyb;
+namespace Wulilele\Zhiyoubao\zyb;
 
 
 class TicketOrder

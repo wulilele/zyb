@@ -80,7 +80,7 @@ class OrderData
             $ticketOrders = null;
         } else {
             foreach ($ticketOrders as $key => $ticketOrder){
-                $ticketOrders[$key] = (array)$ticketOrders;
+                $ticketOrders[$key] = (array)$ticketOrder;
             }
         }
         $this->ticketOrders = $ticketOrders;

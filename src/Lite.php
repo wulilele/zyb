@@ -1,6 +1,7 @@
 <?php
 namespace Wulilele\Zhiyoubao;
 use Wulilele\Zhiyoubao\zyb\Order;
+use Wulilele\Zhiyoubao\zyb\OrderData;
 
 /**
  * Created by PhpStorm.
@@ -26,7 +27,8 @@ class Lite
 
     /**
      * 下单
-     * @param $orderData 订单数据
+     * @param $orderData OrderData 订单数据
+     * @return bool|mixed
      */
     public function create($orderData){
        return $this->zyb->create_order($orderData);

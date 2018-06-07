@@ -16,7 +16,7 @@ $config = [
     'notify_url' => '',
     'url' => ""
 ];
-$ticketOrder = new \zyb\TicketOrder();
+$ticketOrder = new Wulilele\Zhiyoubao\zyb\TicketOrder();
 $ticketOrder->goodsName = "";
 $ticketOrder->price = 1;
 $ticketOrder->quantity = 1;
@@ -28,7 +28,7 @@ $ticketOrder->orderCode = "12321312312";
 $ticketOrders = [];
 array_push($ticketOrders,$ticketOrder);
 
-$orderData = new \zyb\OrderData();
+$orderData = new Wulilele\Zhiyoubao\zyb\OrderData();
 $orderData->setTicketOrders($ticketOrders);
 $orderData->orderCode = "";
 $orderData->certificateNo = "";

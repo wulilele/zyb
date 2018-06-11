@@ -41,17 +41,24 @@ class Order
             ]
         ];
         $arr = $this->getPostParam('SEND_CODE_REQ', $orderRequest);
-        return $this->curlPost($this->config['url'],$arr);
+        $result = $this->curlPost($this->config['url'],$arr);
+        return $result;
     }
 
     private function curlPost($url,$requestString,$timeout = 5){
         if($url == '' || $requestString == '' || $timeout <=0){
             return false;
         }
+        $o = "";
+        foreach ( $requestString as $k => $v )
+        {
+            $o.= "$k=" . urlencode( $v ). "&" ;
+        }
+        $post_data = substr($o,0,-1);
         try{
             $con = curl_init((string)$url);
             curl_setopt($con, CURLOPT_HEADER, false);
-            curl_setopt($con, CURLOPT_POSTFIELDS, $requestString);
+            curl_setopt($con, CURLOPT_POSTFIELDS, $post_data);
             curl_setopt($con, CURLOPT_POST,true);
             curl_setopt($con, CURLOPT_RETURNTRANSFER,true);
             curl_setopt($con, CURLOPT_TIMEOUT,(int)$timeout);

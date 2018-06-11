@@ -19,5 +19,5 @@ class CredentialData
     /**
      * @var 身份证号
      */
-    public $id;
+    public $id_number;
 }

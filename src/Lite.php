@@ -33,4 +33,27 @@ class Lite
     public function create($orderData){
        return $this->zyb->create_order($orderData);
     }
+
+    /**
+     * 退款
+     * @param $orderData
+     */
+    public function refund($orderData){
+
+    }
+
+    /**
+     * 查询
+     * @param $orderData
+     */
+    public function query($orderData){
+
+    }
+
+    /**
+     *通知
+     */
+    public function notify(){
+
+    }
 }

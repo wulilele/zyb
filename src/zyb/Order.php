@@ -16,6 +16,11 @@ class Order
         $this->config = $config;
     }
 
+    /**
+     * 下单
+     * @param $orderData
+     * @return mixed
+     */
     public function create_order($orderData)
     {
         //子订单重组
@@ -41,33 +46,69 @@ class Order
             ]
         ];
         $arr = $this->getPostParam('SEND_CODE_REQ', $orderRequest);
-        $result = $this->curlPost($this->config['url'],$arr);
+        $result = $this->curlPost($this->config['url'], $arr);
         return $result;
     }
 
-    private function curlPost($url,$requestString,$timeout = 5){
-        if($url == '' || $requestString == '' || $timeout <=0){
+    /**
+     * @param orderCode 子订单号
+     * @param returnNum 退票数量
+     * @param idCards 身份证号
+     * 退款
+     */
+    public function order_refund($data)
+    {
+        $orderRequest = [
+            'returnTicket' => [
+                'orderCode' => $data['orderCode'],
+                'returnNum' => $data['returnNum'],
+                'idCards' => $data['idCards']
+            ]
+        ];
+        $arr = $this->getPostParam("RETURN_TICKET_NUM_NEW_REQ", $orderRequest);
+        $result = $this->curlPost($this->config['url'], $arr);
+        return $result;
+    }
+
+    /**
+     * @param $orderCode string 订单号
+     * @return mixed
+     */
+    public function order_query($orderCode)
+    {
+        $orderRequest = [
+            'order' => [
+                'orderCode' => $orderCode
+            ]
+        ];
+        $arr = $this->getPostParam("QUERY_ORDER_NEW_REQ", $orderRequest);
+        $result = $this->curlPost($this->config['url'], $arr);
+        return $result;
+    }
+
+    private function curlPost($url, $requestString, $timeout = 5)
+    {
+        if ($url == '' || $requestString == '' || $timeout <= 0) {
             return false;
         }
         $o = "";
-        foreach ( $requestString as $k => $v )
-        {
-            $o.= "$k=" . urlencode( $v ). "&" ;
+        foreach ($requestString as $k => $v) {
+            $o .= "$k=" . urlencode($v) . "&";
         }
-        $post_data = substr($o,0,-1);
-        try{
+        $post_data = substr($o, 0, -1);
+        try {
             $con = curl_init((string)$url);
             curl_setopt($con, CURLOPT_HEADER, false);
             curl_setopt($con, CURLOPT_POSTFIELDS, $post_data);
-            curl_setopt($con, CURLOPT_POST,true);
-            curl_setopt($con, CURLOPT_RETURNTRANSFER,true);
-            curl_setopt($con, CURLOPT_TIMEOUT,(int)$timeout);
+            curl_setopt($con, CURLOPT_POST, true);
+            curl_setopt($con, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($con, CURLOPT_TIMEOUT, (int)$timeout);
             $result = curl_exec($con);
             curl_close($con);
             $data = $this->xmlToArray($result);
             return $data;
-        }catch (\HttpRequestException $exception){
-            throw new \HttpRequestException('页面不见了',404);
+        } catch (\HttpRequestException $exception) {
+            throw new \HttpRequestException('页面不见了', 404);
         }
     }
 

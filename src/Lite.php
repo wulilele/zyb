@@ -39,7 +39,7 @@ class Lite
      * @param $orderData
      */
     public function refund($orderData){
-
+        return $this->zyb->order_refund($orderData);
     }
 
     /**
@@ -47,7 +47,7 @@ class Lite
      * @param $orderData
      */
     public function query($orderData){
-
+        return $this->zyb->order_query($orderData);
     }
 
     /**

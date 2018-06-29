@@ -35,15 +35,7 @@ class Lite
     }
 
     /**
-     * 退款
-     * @param $orderData
-     */
-    public function refund($orderData){
-        return $this->zyb->order_refund($orderData);
-    }
-
-    /**
-     * 查询
+     * 订单查询
      * @param $orderData
      */
     public function query($orderData){
@@ -51,9 +43,96 @@ class Lite
     }
 
     /**
-     *通知
+     * 部分退票
+     * @param $orderData
      */
-    public function notify(){
+    public function refund($orderData){
+        return $this->zyb->order_refund($orderData);
+    }
 
+    /**
+     * 取消订单
+     * @param $orderData
+     * @return string
+     */
+    public function cancel($orderData){
+        return $this->zyb->cancel_order($orderData);
+    }
+
+    /**
+     * 检票情况查询
+     * @param $orderData
+     * @return string
+     */
+    public function checkStatus($orderData)
+    {
+        return $this->zyb->checkStatusQuery($orderData);
+    }
+
+    /**
+     * 发码图片查询
+     * @param $orderData
+     * @return string
+     */
+    public function img($orderData)
+    {
+        return $this->zyb->imgQuery($orderData);
+    }
+
+    /**
+     * 发送短信
+     * @param $orderData
+     * @return string
+     */
+    public function sendSms($orderData)
+    {
+        return $this->zyb->sendSms($orderData);
+    }
+
+    /**
+     * 获取订单检票信息
+     * @param $orderData
+     * @return string
+     */
+    public function subOrderCheck($orderData)
+    {
+        return $this->zyb->subOrderCheckQuery($orderData);
+    }
+
+    /**
+     * 退票情况查询
+     * @param $orderData
+     * @return string
+     */
+    public function returnStatus($orderData){
+        return $this->zyb->returnStatusQuery($orderData);
+    }
+
+    /**
+     * 获取二维码链接
+     * @param $orderData
+     * @return string
+     */
+    public function queryImgUrl($orderData){
+        return $this->zyb->queryImgUrl($orderData);
+    }
+
+    /**
+     * 获取二维码短链接
+     * @param $orderData
+     * @return string
+     */
+    public function queryShortImgUrl($orderData){
+        return $this->zyb->queryShortImgUrl($orderData);
+    }
+
+
+    /**
+     *通知签名验证
+     * @param  $param array $_GET参数
+     * @param $config array 配置
+     */
+    public function notify($param,$config){
+        return $this->zyb->notify($param,$config);
     }
 }

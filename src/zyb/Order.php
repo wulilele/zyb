@@ -340,7 +340,7 @@ class Order
      * @return array
      */
     public function notify($param,$config){
-        if(!$this->checkSign($_GET,$config)){
+        if(!$this->checkSign($param,$config)){
            exit();
         }
         return $param;

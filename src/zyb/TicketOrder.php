@@ -47,6 +47,16 @@ class TicketOrder
     public $goodsName;
 
     /**
+     * @var string 分时票开始时间
+     */
+    public $fsStartTime;
+
+    /**
+     * @var string 分时票结束时间
+     */
+    public $fsEndTime;
+
+    /**
      * @var 备注，非必须
      */
     public $remark;

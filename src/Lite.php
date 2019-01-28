@@ -26,6 +26,17 @@ class Lite
     }
 
     /**
+     * 获取分时库存
+     * @param $goodsCode string 票型编码
+     * @param $startDate string 开始日期
+     * @param $endDate string 结束日期
+     * @return mixed
+     */
+    public function get_store($goodsCode,$startDate,$endDate){
+        return $this->zyb->get_store($goodsCode,$startDate,$endDate);
+    }
+
+    /**
      * 下单
      * @param $orderData OrderData 订单数据
      * @return bool|mixed

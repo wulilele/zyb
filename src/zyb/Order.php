@@ -17,6 +17,49 @@ class Order
     }
 
     /**
+     * 分时库存查询
+     * @param $goodsCode string 商品票型编码
+     * @param $startDate string 开始日期  2017-11-28
+     * @param $endDate string 结束日期 2017-11-28
+     */
+    public function get_store($goodsCode,$startDate,$endDate){
+        $queryCondtion = [
+            'goodsCode' => $goodsCode,
+            'startDate' => $startDate,
+            'endDate' => $endDate
+        ];
+        $reqParam = [
+            "transactionName" => "FS_STOCK_REQ",
+            "header" => [
+                "application" => "SendCode",
+                "requestTime" => date("Y-m-d")
+            ],
+            "identityInfo" => [
+                "corpCode" => $this->config['corpCode'],
+                "userName" => $this->config['userName']
+            ],
+            "queryCondtion" => $queryCondtion
+        ];
+
+        //数组去掉null
+        $arr = $this->array_remove_empty($reqParam);  // filter the array
+
+        //转换为xml格式字符串
+        $result = $this->arrayToXml($arr);
+        //添加根标签
+        $xml = "<PWBRequest>" . $result . "</PWBRequest>";
+        //签名
+        $sign = md5("xmlMsg=" . $xml . $this->config['secret']);
+        //构建post参数
+        $arr = array(
+            "xmlMsg" => $xml,
+            "sign" => $sign
+        );
+        $result = $this->curlPost($this->config['url'], $arr);
+        return $result;
+    }
+
+    /**
      * 下单
      * @param $orderData
      * @return mixed

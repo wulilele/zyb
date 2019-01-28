@@ -16,27 +16,31 @@ $config = [
     'notify_url' => '',
     'url' => ""
 ];
-$ticketOrder = new Wulilele\Zhiyoubao\zyb\TicketOrder();
-$ticketOrder->goodsName = "";
-$ticketOrder->price = 1;
-$ticketOrder->quantity = 1;
-$ticketOrder->occDate = "";
-$ticketOrder->totalPrice = 1;
-$ticketOrder->goodsCode = "";
-$ticketOrder->orderCode = "12321312312";
+//$orderLite = new \Wulilele\Zhiyoubao\Lite($config);
+//$result = $orderLite->get_store("1111","2019-01-28","2019-01-28");
+//var_dump($result);
 
-$ticketOrders = [];
-array_push($ticketOrders,$ticketOrder);
-
-$orderData = new Wulilele\Zhiyoubao\zyb\OrderData();
-$orderData->setTicketOrders($ticketOrders);
-$orderData->orderCode = "";
-$orderData->certificateNo = "";
-$orderData->linkMobile = "";
-$orderData->linkName = "";
-$orderData->payMethod = "";
-$orderData->orderPrice = 1;
-$orderLite = new \Wulilele\Zhiyoubao\Lite($config);
-$result = $orderLite->create($orderData);
-var_dump($result);
+//$ticketOrder = new Wulilele\Zhiyoubao\zyb\TicketOrder();
+//$ticketOrder->goodsName = "";
+//$ticketOrder->price = 1;
+//$ticketOrder->quantity = 1;
+//$ticketOrder->occDate = "";
+//$ticketOrder->totalPrice = 1;
+//$ticketOrder->goodsCode = "";
+//$ticketOrder->orderCode = "12321312312";
+//
+//$ticketOrders = [];
+//array_push($ticketOrders,$ticketOrder);
+//
+//$orderData = new Wulilele\Zhiyoubao\zyb\OrderData();
+//$orderData->setTicketOrders($ticketOrders);
+//$orderData->orderCode = "";
+//$orderData->certificateNo = "";
+//$orderData->linkMobile = "";
+//$orderData->linkName = "";
+//$orderData->payMethod = "";
+//$orderData->orderPrice = 1;
+//$orderLite = new \Wulilele\Zhiyoubao\Lite($config);
+//$result = $orderLite->create($orderData);
+//var_dump($result);
 

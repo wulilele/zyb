@@ -19,7 +19,7 @@ $config = [
 //$orderLite = new \Wulilele\Zhiyoubao\Lite($config);
 //$result = $orderLite->get_store("1111","2019-01-28","2019-01-28");
 //var_dump($result);
-
+//
 //$ticketOrder = new Wulilele\Zhiyoubao\zyb\TicketOrder();
 //$ticketOrder->goodsName = "";
 //$ticketOrder->price = 1;
@@ -28,6 +28,7 @@ $config = [
 //$ticketOrder->totalPrice = 1;
 //$ticketOrder->goodsCode = "";
 //$ticketOrder->orderCode = "12321312312";
+//
 //
 //$ticketOrders = [];
 //array_push($ticketOrders,$ticketOrder);

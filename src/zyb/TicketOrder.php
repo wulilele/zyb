@@ -68,9 +68,24 @@ class TicketOrder
      */
     public function setCredentials($credentials)
     {
-        $arr['credential']['id'] = $credentials['id_number'];
-        $arr['credential']['name'] = $credentials['name'];
-        $this->credentials = $arr;
+        if(isset($credentials['id_number']) && isset($credentials['name'])){
+            $arr['credential']['id'] = $credentials['id_number'];
+            $arr['credential']['name'] = $credentials['name'];
+            $this->credentials = $arr;
+        }else{
+            if(is_array($credentials)){
+                $list = array();
+                foreach ($credentials as $item){
+                    if(isset($item['id_number']) && isset($item['name'])){
+                        $temp['credential']['id'] = $item['id_number'];
+                        $temp['credential']['name'] =$item['name'];
+                        array_push($list,$temp);
+                    }
+                }
+                $this->credentials = $list;
+            }
+        }
+
     }
 
 

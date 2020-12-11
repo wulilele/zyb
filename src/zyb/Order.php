@@ -77,9 +77,8 @@ class Order
                     $credential["credential"."[".$k."]"] = $v;
                 }
                 $ticketOrders[$i]['credentials'] = $credential;
-            }else{
-                $ticketOrder["ticketOrder" . "[" . $i . "]"] = $ticketOrders[$i];
             }
+            $ticketOrder["ticketOrder" . "[" . $i . "]"] = $ticketOrders[$i];
         }
         $orderRequest = [
             "order" => [

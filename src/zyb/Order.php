@@ -70,11 +70,10 @@ class Order
         $ticketOrders = $orderData->ticketOrders;
         $ticketOrder = array();
         for ($i = 0; $i < count($ticketOrders); $i++) {
-            $ticketOrderTmp = $ticketOrders[$i];
+            $ticketOrderTmp = $ticketOrders[$i]['credentials'];
             if(!empty($ticketOrderTmp) && isset($ticketOrderTmp[0]['id'])){
-                $credentials = $ticketOrderTmp['credentials'];
                 $credential = array();
-                foreach ($credentials as $k => $v){
+                foreach ($ticketOrderTmp as $k => $v){
                     $credential["credential"."[".$k."]"] = $v;
                 }
                 $ticketOrders[$i]['credentials'] = $credential;

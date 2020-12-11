@@ -76,7 +76,7 @@ class TicketOrder
             if(is_array($credentials)){
                 $list = array();
                 foreach ($credentials as $item){
-                    if(isset($item['id_number']) && isset($item['name'])){
+                    if(property_exists($item,'id_number') && property_exists($item,'name')){
                         $temp['credential']['id'] = $item['id_number'];
                         $temp['credential']['name'] =$item['name'];
                         array_push($list,$temp);

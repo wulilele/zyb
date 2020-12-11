@@ -71,8 +71,8 @@ class Order
         $ticketOrder = array();
         for ($i = 0; $i < count($ticketOrders); $i++) {
             $ticketOrderTmp = $ticketOrders[$i];
-            if(property_exists($ticketOrderTmp,'credentials') && !empty($ticketOrderTmp->credentials)){
-                $credentials = $ticketOrderTmp->credentials;
+            if(!empty($ticketOrderTmp) && isset($ticketOrderTmp[0]['id'])){
+                $credentials = $ticketOrderTmp['credentials'];
                 $credential = array();
                 foreach ($credentials as $k => $v){
                     $credential["credential"."[".$k."]"] = $v;

@@ -70,7 +70,17 @@ class Order
         $ticketOrders = $orderData->ticketOrders;
         $ticketOrder = array();
         for ($i = 0; $i < count($ticketOrders); $i++) {
-            $ticketOrder["ticketOrder" . "[" . $i . "]"] = $ticketOrders[$i];
+            $ticketOrderTmp = $ticketOrders[$i];
+            if(property_exists($ticketOrderTmp,'credentials') && !empty($ticketOrderTmp->credentials)){
+                $credentials = $ticketOrderTmp->credentials;
+                $credential = array();
+                foreach ($credentials as $k => $v){
+                    $credential["credential"."[".$k."]"] = $v;
+                }
+                $ticketOrders[$i]['credentials'] = $credential;
+            }else{
+                $ticketOrder["ticketOrder" . "[" . $i . "]"] = $ticketOrders[$i];
+            }
         }
         $orderRequest = [
             "order" => [
